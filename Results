@@ -1,0 +1,87 @@
+# Results
+
+## Macroeconomic Forecasting
+
+The macroeconomic pipeline evaluates:
+
+* Nifty 50
+* CPI Inflation
+* GDP Growth
+
+on the 2023–2025 out-of-sample period.
+
+### OOS-R²
+
+| Model             |    Nifty 50 | CPI Inflation |  GDP Growth |
+| ----------------- | ----------: | ------------: | ----------: |
+| ARIMA             |     -0.1245 |       -0.1073 |     -0.2502 |
+| Ridge             | **+0.9737** |   **+0.9933** |     +0.2114 |
+| Random Forest     |     +0.6541 |       +0.0237 | **+0.8806** |
+| Decision Tree     |     -1.1523 |       -1.4920 |     -1.1503 |
+| Gradient Boosting |     -0.5432 |       -0.1207 |     -3.4210 |
+| Voting Ensemble   |     +0.4512 |       -0.0602 |     -0.1878 |
+
+## Key Observations
+
+### Nifty 50
+
+```text
+Ridge
+OOS-R² = +0.9737
+```
+
+### CPI Inflation
+
+```text
+Ridge
+OOS-R² = +0.9933
+```
+
+### GDP Growth
+
+```text
+Random Forest
+OOS-R² = +0.8806
+```
+
+The results show that the best-performing model differs across target variables.
+
+## Gradient Boosting
+
+A particularly notable result is:
+
+```text
+GDP Growth
+Gradient Boosting
+OOS-R² = -3.4210
+```
+
+The project associates this result with severe overfitting in the small-sample environment.
+
+## Equity Forecasting
+
+The equity pipeline evaluates:
+
+* HDFC Bank
+* TCS
+* Trent
+* Larsen & Toubro
+* Titan
+
+over the **January–May 2026** out-of-sample period.
+
+The project reports negative OOS-R² values across the five stocks and the model suite.
+
+This highlights the difficulty of forecasting short-horizon equity prices using historical-price information alone.
+
+## Main Finding
+
+The central empirical observation is:
+
+```text
+More Model Complexity
+        ≠
+Better Out-of-Sample Forecast
+```
+
+In small, noisy datasets, strong regularization and controlled model complexity can be more useful than unrestricted flexibility.
