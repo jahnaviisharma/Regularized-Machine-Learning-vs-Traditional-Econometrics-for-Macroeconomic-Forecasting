@@ -1,0 +1,71 @@
+# Feature Engineering
+
+The project combines historical time-series information with economically motivated cross-variable features.
+
+## Economic Foundation
+
+The **IS–LM framework** motivates relationships between:
+
+```text
+Output
+Inflation
+Interest Rates
+Money Supply
+```
+
+This provides theoretical motivation for using lagged cross-variable information.
+
+## Features
+
+The feature set includes:
+
+* Lagged target values
+* Cross-variable lags
+* Rolling means
+* Rolling volatility
+* Lagged macroeconomic variables
+* Market indicators
+
+## Zero Look-Ahead Bias
+
+All features are constructed using historical information only.
+
+```text
+Raw Time Series
+      ↓
+shift(1)
+      ↓
+Rolling Statistics
+      ↓
+Feature Matrix
+      ↓
+Model
+```
+
+Using `.shift(1)` ensures that information from period `t` is not accidentally used to predict the same period.
+
+## Example
+
+```text
+GDP(t-1)
+   +
+CPI(t-1)
+   +
+Nifty(t-1)
+   ↓
+Predict GDP(t)
+```
+
+This ensures that every prediction is based only on information that would have been available at the forecasting point.
+
+## Small-Sample Considerations
+
+The macroeconomic dataset contains relatively few observations, making:
+
+* Overfitting
+* Multicollinearity
+* Model variance
+
+important considerations.
+
+This motivates the use of strong regularization and deliberately constrained nonlinear models.
