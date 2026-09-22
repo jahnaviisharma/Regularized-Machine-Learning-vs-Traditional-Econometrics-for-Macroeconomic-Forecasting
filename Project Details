@@ -1,0 +1,73 @@
+# Project Details
+
+## Overview
+
+This project investigates the complementary roles of **traditional econometrics and modern machine learning** in forecasting Indian macroeconomic and financial time series.
+
+The central research question is:
+
+> **When forecasting economic and financial variables with small, noisy datasets, does increasing model complexity actually improve out-of-sample performance?**
+
+The study compares classical ARIMA with regularized and nonlinear machine-learning models using strict chronological evaluation.
+
+## Objectives
+
+* Benchmark ARIMA against machine-learning models.
+* Investigate the effect of strong regularization in small datasets.
+* Develop a methodology for handling the COVID-19 structural break.
+* Evaluate historical-price-based equity forecasting.
+* Investigate forecast combination using VotingRegressor.
+* Build a reproducible time-series forecasting framework.
+
+## Forecasting Pipelines
+
+### Macroeconomic Pipeline
+
+Targets:
+
+* Nifty 50 quarterly average
+* GDP Growth Rate
+* CPI Inflation
+
+Period:
+
+**2008–2025**
+
+### Equity Pipeline
+
+Stocks:
+
+* HDFC Bank
+* TCS
+* Trent
+* Larsen & Toubro
+* Titan
+
+Period:
+
+**January 2022 – May 2026**
+
+The equity pipeline uses monthly adjusted closing prices.
+
+## Core Models
+
+```text
+ARIMA
+Ridge Regression
+Random Forest
+Decision Tree
+Gradient Boosting
+VotingRegressor
+```
+
+## Key Focus
+
+The project emphasizes:
+
+* Small-sample forecasting
+* Regularization
+* Time-series-aware validation
+* Zero look-ahead bias
+* Chronological train/test splits
+* Out-of-sample evaluation
+* Economic theory-guided feature engineering
