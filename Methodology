@@ -1,0 +1,96 @@
+# Methodology
+
+## Overall Pipeline
+
+```text
+Data Collection
+      ↓
+Data Cleaning
+      ↓
+Resampling / Interpolation
+      ↓
+Feature Engineering
+      ↓
+Lagging
+      ↓
+COVID-19 Treatment
+      ↓
+Chronological Train/Test Split
+      ↓
+TimeSeriesSplit
+      ↓
+Hyperparameter Tuning
+      ↓
+Model Training
+      ↓
+Out-of-Sample Forecast
+      ↓
+Performance Evaluation
+```
+
+## Chronological Evaluation
+
+Random train-test splitting is avoided because future observations must not enter the training data.
+
+### Macroeconomic Data
+
+```text
+Training: 2008–2022
+Testing:  2023–2025
+```
+
+### Equity Data
+
+```text
+Training: January 2022 – December 2025
+Testing:  January 2026 – May 2026
+```
+
+## COVID-19 Treatment
+
+2020 is treated asymmetrically:
+
+```text
+2020 Target
+    ↓
+Excluded
+
+2020 Lagged Information
+    ↓
+Retained
+```
+
+This allows the model to use historical information from the COVID shock when forecasting the 2021 recovery without allowing the extreme 2020 target observation to directly distort training.
+
+## TimeSeriesSplit
+
+Hyperparameter tuning uses time-series-aware cross-validation rather than random K-fold validation.
+
+```text
+Fold 1: Train → Test
+Fold 2: Train ──→ Test
+Fold 3: Train ─────→ Test
+Fold 4: Train ─────────→ Test
+```
+
+The fundamental rule is:
+
+**Past → Future**
+
+and never:
+
+**Future → Past**
+
+## Evaluation
+
+The primary macroeconomic metric is **Out-of-Sample R²**.
+
+```text
+OOS-R² > 0
+→ Better than the naive mean benchmark
+
+OOS-R² < 0
+→ Worse than the naive mean benchmark
+```
+
+Equity forecasting additionally evaluates prediction error using MSE.
