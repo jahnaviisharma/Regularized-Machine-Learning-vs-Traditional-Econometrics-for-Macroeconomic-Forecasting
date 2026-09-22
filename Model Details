@@ -1,0 +1,103 @@
+# Model Details
+
+The project compares classical econometrics with regularized and nonlinear machine learning.
+
+## ARIMA
+
+ARIMA provides the classical time-series benchmark.
+
+It captures:
+
+```text
+Autoregressive Behaviour
+        +
+Differencing
+        +
+Moving Average Dynamics
+```
+
+A grid of `(p,d,q)` combinations is evaluated and the specification is selected using training-set AIC.
+
+## Ridge Regression
+
+Ridge applies L2 regularization:
+
+```text
+Prediction Error
++
+α × Coefficient Magnitude²
+```
+
+The project evaluates:
+
+```text
+α = 0.1, 1, 10, 100, 500, 1000, 5000
+```
+
+Strong regularization is particularly relevant because lagged macroeconomic variables can be highly correlated.
+
+## Random Forest
+
+Random Forest is used to capture nonlinear relationships while controlling variance.
+
+The model is deliberately constrained using shallow trees and minimum leaf-size restrictions.
+
+## Decision Tree
+
+A shallow decision tree is used as an interpretability benchmark.
+
+```text
+max_depth = 1
+```
+
+This effectively creates a decision stump.
+
+## Gradient Boosting
+
+Gradient Boosting provides a more flexible nonlinear benchmark.
+
+The project uses conservative settings for:
+
+* Learning rate
+* Tree depth
+* Number of estimators
+
+The model is particularly useful for studying overfitting in small datasets.
+
+## VotingRegressor
+
+The ensemble combines:
+
+```text
+Ridge
++
+Random Forest
++
+Decision Tree
++
+Gradient Boosting
+```
+
+Predictions are averaged to investigate whether combining structurally different models can improve forecast stability.
+
+## Model Comparison
+
+```text
+Classical
+    ↓
+ARIMA
+
+Regularized Linear
+    ↓
+Ridge
+
+Nonlinear
+    ↓
+Decision Tree
+Random Forest
+Gradient Boosting
+
+Ensemble
+    ↓
+VotingRegressor
+```
