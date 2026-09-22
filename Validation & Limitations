@@ -1,0 +1,39 @@
+# Validation & Limitations
+
+## Validation Strategy
+
+The project uses:
+
+•⁠  ⁠Chronological train/test splits
+•⁠  ⁠TimeSeriesSplit
+•⁠  ⁠Zero look-ahead feature engineering
+•⁠  ⁠Out-of-Sample R²
+•⁠  ⁠MSE for equity forecasting
+•⁠  ⁠Forecast visualization
+•⁠  ⁠Comparative model analysis
+
+## Small Sample Size
+
+The macroeconomic dataset contains relatively few observations.
+
+This limits:
+
+•⁠  ⁠Statistical power
+•⁠  ⁠Model complexity
+•⁠  ⁠Hyperparameter search
+•⁠  ⁠Confidence in short test windows
+
+## GDP Interpolation
+
+Annual GDP data is interpolated to quarterly frequency.
+
+This increases the effective sample size but does not create genuinely observed quarterly GDP observations.
+
+Therefore, results involving interpolated GDP should be interpreted carefully.
+
+## Short Equity Test Window
+
+The equity evaluation covers only:
+
+⁠ text
+January–May 2026
